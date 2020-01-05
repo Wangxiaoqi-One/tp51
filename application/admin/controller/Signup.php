@@ -6,7 +6,7 @@ class Signup extends Base{
     protected function initialize()
     {
         parent::initialize();
-        $majors = model('Major')->field('id, majorname')->select();
+        $majors = model('Major')->field('id, majorname, studytime')->select();
         $this->assign('majors', $majors);
         $this->obj = 'Users';
     }

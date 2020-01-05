@@ -41,18 +41,5 @@ class Studylesson extends Base{
             $info['username'] = userIDtoPhone($info['userID']);
             $info['studytime'] = majorIdToMajorTime($info['lesson']);
     }
-
-    public function treelookup(){
-        $listRows = input('numPerPage') ?? '10';
-        $map['is_del'] = '0';
-        $data = model('Major')->where($map)->paginate($listRows);
-        $page = $data->render();
-        $dataArry = $data->toArray();
-        $this->assign('page', $page);
-        $this->assign('data', $dataArry['data']);
-        $this->assign('currentPage', $dataArry['current_page']);
-        $this->assign('numPerPage', $dataArry['per_page']);
-        $this->assign('total', $dataArry['total']);
-        return view();
-    }
+    
 }

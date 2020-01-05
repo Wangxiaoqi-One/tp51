@@ -9,9 +9,9 @@
                 <dd><input name="username" type=" text" value="{$data['username']}"/></dd>
             </dl>
             <label>性别</label>
-            <label><input type="radio" name="sex" value="0" />女</label>
-            <label><input type="radio" name="sex" value="1" />男</label>
-            <label><input type="radio" name="sex" value="2" />保密</label>
+            <label><input type="radio" name="sex" value="0" {eq name="data['sex']" value="0"}checked{/eq}/>女</label>
+            <label><input type="radio" name="sex" value="1" {eq name="data['sex']" value="1"}checked{/eq}/>男</label>
+            <label><input type="radio" name="sex" value="2" {eq name="data['sex']" value="2"}checked{/eq}/>保密</label>
             <dl>
                 <dt>身份证</dt>
                 <dd><input name="IDcard" type=" text" value="{$data['IDcard']}"/></dd>
@@ -29,15 +29,15 @@
                 <dd><input name="phone" type=" text" value="{$data['phone']}"/></dd>
             </dl>
             <label>户籍类型</label>
-            <label><input type="radio" name="housetype" value="0"/>城镇</label>
-            <label><input type="radio" name="housetype" value="1"/>农村</label>
+            <label><input type="radio" name="housetype" value="0" {eq name="data['housetype']" value="0"}checked{/eq}/>城镇</label>
+            <label><input type="radio" name="housetype" value="1" {eq name="data['housetype']" value="1"}checked{/eq}/>农村</label>
             <dl>
                 <dt>照片</dt>
                 <dd><input name="photo" type=" text" value="{$data['photo']}"/></dd>
             </dl>
             <label>就业状态</label>
-            <label><input type="radio" name="employstatus" value="0"/>待业</label>
-            <label><input type="radio" name="employstatus" value="1"/>在职</label>
+            <label><input type="radio" name="employstatus" value="0" {eq name="data['employstatus']" value="0"}checked{/eq}/>待业</label>
+            <label><input type="radio" name="employstatus" value="1" {eq name="data['employstatus']" value="1"}checked{/eq}/>在职</label>
             <dl>
                 <dt>身份证正面</dt>
                 <dd><input name="idCardbefore" type=" text" value="{$data['idCardbefore']}"/></dd>

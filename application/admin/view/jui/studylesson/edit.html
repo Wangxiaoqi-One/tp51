@@ -9,16 +9,12 @@
             <dl>
                 <dt>学习课程</dt>
                 <dd>
-                    <select name="lesson" class="combox">
+                    <select name="lesson" id="major">
                         {volist name="majors" id="major"}
-                        <option value="{$major.id}">{$major.majorname}</option>
+                        <option value="{$major.id}" {eq name="data['lesson']" value="$major.id"}selected{/eq}>{$major.majorname}--{$major.studytime}</option>
                         {/volist}
                     </select>
                 </dd>
-            </dl>
-            <dl>
-                <dt>学习时长</dt>
-                <dd><input name="studytime" type=" text" value="{$data['studytime']}"/></dd>
             </dl>
             <label>学习状态</label>
             <label><input type="radio" name="studystatus" value="0" {eq name="data.studystatus" value="0"}checked{/eq}/>已报名</label>
@@ -43,3 +39,8 @@
 
     </form>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+            $('#major').select2();
+      });
+</script>
