@@ -1,0 +1,28 @@
+<div class="pageContent">
+    <form method="post" action="{:url($Request.controller . '/add', 'navTabId=major&callbackType=closeCurrent')}"
+        class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)">
+
+        <div class="pageFormContent nowrap" layoutH="55">
+
+            <dl>
+                <dt>专业名称</dt>
+                <dd><input name="majorname"" type=" text" /></dd>
+            </dl>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent"><button type="submit">保存</button></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent"><button type="button" class="close">取消</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </form>
+</div>

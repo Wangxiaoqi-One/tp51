@@ -1,0 +1,100 @@
+<form id="pagerForm" method="post" action="{:url($Request.controller . '/index')}">
+	<input type="hidden" name="_order" value="{$Think.request._order}"/>
+    <input type="hidden" name="_sort" value="{$Think.request._sort}"/>
+    <input type="hidden" name="is_del" value="{$Think.request.is_del}"/>
+	<input type="hidden" name="page" value="{$currentPage|default='1'}" />
+	<input type="hidden" name="numPerPage" value="{$numPerPage}" />
+</form>
+
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" method="post">
+		<div class="searchBar">
+			<table class="searchContent">
+				<tr>
+					<td>
+						学员姓名：<input type="text" name="keyword" value="{$Think.request.keyword}" />
+					</td>
+					<td>
+						<select class="combox" name="studystatus">
+							<option value="0">已报名</option>
+							<option value="1">学习中</option>
+							<option value="2">学习结束</option>
+							<option value="3">试课</option>
+						</select>
+					</td>
+					<td>
+						<div class="buttonActive">
+							<div class="buttonContent"><button type="submit">检索</button></div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="{:url($Request.controller . '/add')}" target="navTab" rel="addstudylesson"><span>添加</span></a></li>
+			<li><a class="delete" href="{:url($Request.controller . '/deltag', 'id='.config('template.tpl_begin') . 'item_id' . config('template.tpl_end'))}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+			<li><a class="edit" href="{:url($Request.controller . '/edit', 'id='.config('template.tpl_begin') . 'item_id' . config('template.tpl_end'))}" target="navTab" rel="editstudylesson"><span>修改</span></a></li>
+			<li class="line">line</li>
+			<!-- <li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li> -->
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="138">
+		<thead>
+			<tr>
+				<th width="80" orderField="id" {eq name="Think.request._order" value="id"} class="{$Think.request._sort}"{/eq}>id</th>
+				<th width="80">用户id</th>
+				<th width="80">课程</th>
+				<th width="150">学习时长</th>
+                <th width="80">学习状态</th>
+                <th width="80">是否删除</th>
+                <th width="80">创建时间</th>
+                <th width="80">更新时间</th>
+                <th width="80">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+            {volist name="data" id="vo"}
+            <tr target="item_id" rel="{$vo.id}}">
+				<td>{$vo.id}</td>
+				<td>{$vo.userID}</td>
+				<td>{$vo.lesson}</td>
+                <td>{$vo.studytime}</td>
+                <td>{$vo.studystatus}</td>
+                <td>{$vo.is_del}</td>
+				<td>{$vo.create_time}</td>
+				<td>{$vo.update_time}</td>
+                <td>
+                    <a class="btnEdit" href="{:url($Request.controller . '/edit', 'id=' . $vo.id)}" width="550" height="380"
+                        target="navTab" title="编辑大师">
+                        <span>编辑</span>
+                    </a>
+                    <a class="btnDel" href="{:url($Request.controller . '/deltag', 'id=' . $vo.id)}" width="550" height="380"
+                        target="ajaxTodo" title="确定要删除吗?">
+                        <span>删除</span>
+                    </a>
+                </td>
+			</tr>
+            {/volist}
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({:config('template.tpl_begin')}numPerPage:this.value{:config('template.tpl_end')})">
+				<option value="10" {eq name="numPerPage" value="10"}selected{/eq}>10</option>
+				<option value="15" {eq name="numPerPage" value="15"}selected{/eq}>15</option>
+				<option value="20" {eq name="numPerPage" value="20"}selected{/eq}>20</option>
+				<option value="30" {eq name="numPerPage" value="30"}selected{/eq}>30</option>
+			</select>
+			<span>条，共{$total}条</span>
+		</div>
+		
+		<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="{$numPerPage}" pageNumShown="5" currentPage="{$currentPage}"></div>
+
+	</div>
+</div>

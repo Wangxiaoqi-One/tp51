@@ -1,0 +1,45 @@
+<div class="pageContent">
+    <form method="post" action="{:url($Request.controller . '/edit', 'navTabId=studylesson&callbackType=closeCurrent')}"
+        class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)">
+
+        <div class="pageFormContent nowrap" layoutH="55">
+			<input name="id" type="hidden" size="30" value="{$data['id']}"/>
+            <label>用户</label>
+            <label><input type="hidden" name="userID" value="{$data['userID']}"/>{$data['username']}</label>
+            <dl>
+                <dt>学习课程</dt>
+                <dd>
+                    <select name="lesson" class="combox">
+                        {volist name="majors" id="major"}
+                        <option value="{$major.id}">{$major.majorname}</option>
+                        {/volist}
+                    </select>
+                </dd>
+            </dl>
+            <dl>
+                <dt>学习时长</dt>
+                <dd><input name="studytime" type=" text" value="{$data['studytime']}"/></dd>
+            </dl>
+            <label>学习状态</label>
+            <label><input type="radio" name="studystatus" value="0" {eq name="data.studystatus" value="0"}checked{/eq}/>已报名</label>
+            <label><input type="radio" name="studystatus" value="1" {eq name="data.studystatus" value="1"}checked{/eq}/>学习中</label>
+            <label><input type="radio" name="studystatus" value="2" {eq name="data.studystatus" value="2"}checked{/eq}/>学习结束</label>
+            <label><input type="radio" name="studystatus" value="3" {eq name="data.studystatus" value="3"}checked{/eq}/>试课</label>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent"><button type="submit">保存</button></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent"><button type="button" class="close">取消</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </form>
+</div>

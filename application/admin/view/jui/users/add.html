@@ -1,0 +1,66 @@
+<div class="pageContent">
+    <form method="post" action="{:url($Request.controller . '/add', 'navTabId=users&callbackType=closeCurrent')}"
+        class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)">
+
+        <div class="pageFormContent nowrap" layoutH="55">
+            
+            <dl>
+                <dt>用户名</dt>
+                <dd><input name="username" type=" text" /></dd>
+            </dl>
+            <label>性别</label>
+            <label><input type="radio" name="sex" value="0"/>女</label>
+            <label><input type="radio" name="sex" value="1"/>男</label>
+            <label><input type="radio" name="sex" value="2"/>保密</label>
+            <dl>
+                <dt>身份证</dt>
+                <dd><input name="IDcard" type=" text" /></dd>
+            </dl>
+            <dl>
+                <dt>户籍</dt>
+                <dd><input name="addr" type=" text" /></dd>
+            </dl>
+            <dl>
+                <dt>现住址</dt>
+                <dd><input name="nowAddr" type=" text" /></dd>
+            </dl>
+            <dl>
+                <dt>联系方式</dt>
+                <dd><input name="phone" type=" text" /></dd>
+            </dl>
+            <label>户籍类型</label>
+            <label><input type="radio" name="housetype" value="0"/>城镇</label>
+            <label><input type="radio" name="housetype" value="1"/>农村</label>
+            <dl>
+                <dt>照片</dt>
+                <dd><input name="photo" type=" text" /></dd>
+            </dl>
+            <label>就业状态</label>
+            <label><input type="radio" name="employstatus" value="0"/>待业</label>
+            <label><input type="radio" name="employstatus" value="1"/>在职</label>
+            <dl>
+                <dt>身份证正面</dt>
+                <dd><input name="idCardbefore" type=" text" /></dd>
+            </dl>
+            <dl>
+                <dt>身份证背面</dt>
+                <dd><input name="idCardback" type=" text" /></dd>
+            </dl>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent"><button type="submit">保存</button></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent"><button type="button" class="close">取消</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </form>
+</div>
