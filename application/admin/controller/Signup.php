@@ -1,6 +1,8 @@
 <?php
 namespace app\admin\controller;
 
+use app\common\controller\Base;
+
 class Signup extends Base{
 
     protected function initialize()

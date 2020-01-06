@@ -1,6 +1,6 @@
 <div class="pageContent">
     <form method="post" action="{:url($Request.controller . '/add', 'navTabId=users&callbackType=closeCurrent')}"
-        class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)">
+        class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)" enctype="multipart/form-data">
 
         <div class="pageFormContent nowrap" layoutH="55">
             
@@ -28,16 +28,26 @@
                 <dt>联系方式</dt>
                 <dd><input name="phone" type=" text" /></dd>
             </dl>
-            <label>户籍类型</label>
-            <label><input type="radio" name="housetype" value="0"/>城镇</label>
-            <label><input type="radio" name="housetype" value="1"/>农村</label>
+            <dl>
+                <label>户籍类型</label>
+                <label><input type="radio" name="housetype" value="0"/>城镇</label>
+                <label><input type="radio" name="housetype" value="1"/>农村</label>
+            </dl>
+            <dl>
+                <label>就业状态</label>
+                <label><input type="radio" name="employstatus" value="0"/>待业</label>
+                <label><input type="radio" name="employstatus" value="1"/>在职</label>
+            </dl>
             <dl>
                 <dt>照片</dt>
-                <dd><input name="photo" type=" text" /></dd>
+                <dd>
+                    <a href="{:url($Request.controller . '/upload')}" class="button" target="dialog">
+                        <span>上传图片</span>
+                    </a>
+                    <img src="__STATIC__/image/pic_error.png" alt="商品图显示区" title="请上传图片，宽430像素*高430像素" onerror="this.src='__STATIC__/image/pic_error.png'" class="photo" width="430" height="430">
+                    <input type="hidden" class="photo" name="photourl" value="">
+                </dd>
             </dl>
-            <label>就业状态</label>
-            <label><input type="radio" name="employstatus" value="0"/>待业</label>
-            <label><input type="radio" name="employstatus" value="1"/>在职</label>
             <dl>
                 <dt>身份证正面</dt>
                 <dd><input name="idCardbefore" type=" text" /></dd>

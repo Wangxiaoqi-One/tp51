@@ -1,5 +1,7 @@
 <?php
 namespace app\admin\controller;
+ 
+use app\common\controller\Base;
 
 
 class Users extends Base{
@@ -20,5 +22,20 @@ class Users extends Base{
                       ->where('username','like', '%'.$keyword.'%');
             };
         } 
+    }
+
+    public function upload(){
+        if(request()->isGet()){
+            return view();
+        }else{
+            $file = request()->file('pic');
+            $path = $file->getRealPath();
+            $filename = $file->getInfo('name');
+            if($this->uploadImg($filename, $path)){
+                $this->success('上传图片成功');
+            }else{
+                $this->error('上传失败');
+            }
+        }
     }
 }

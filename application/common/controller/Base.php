@@ -1,10 +1,12 @@
 <?php
-namespace app\admin\controller;
+namespace app\common\controller;
 
 use think\Controller;
 
-class Base extends Controller{
+class Base extends Controller
+{
 
+    use Qiniuyun;
     protected $obj = '';
 
     protected function initialize()
@@ -47,10 +49,10 @@ class Base extends Controller{
         }
         else{
             $data = input('post.');
-            $vald = validate($this->obj);
-            if(!$vald->check($data)){
-                $this->error($vald->getError());
-            }
+            // $vald = validate($this->obj);
+            // if(!$vald->check($data)){
+            //     $this->error($vald->getError());
+            // }
             $model = model($this->obj);
             $model->startTrans();
             $result = $model->allowField(true)->save($data);
