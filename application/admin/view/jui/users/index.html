@@ -37,22 +37,21 @@
 		<table class="list" width="100%">
 			<thead>
 				<tr align="center">
-					<th width="5%" orderField="id" {eq name="Think.request._order" value="id"} class="{$Think.request._sort}"{/eq}>id</th>
-					<th width="5%">用户名</th>
-					<th width="5%">性别</th>
-					<th width="5%">身份证</th>
+					<th width="3%" orderField="id" {eq name="Think.request._order" value="id"} class="{$Think.request._sort}"{/eq}>id</th>
+					<th width="3%">用户名</th>
+					<th width="3%">性别</th>
+					<th width="4%">身份证</th>
 					<th width="5%">户籍</th>
-					<th width="10%">现住址</th>
-					<th width="5%">联系方式</th>
-					<th width="5%">户口类型</th>
-					<th width="5%">就业状态</th>
-					<th width="10%">照片</th>
-					<th width="10%">身份证正面</th>
-					<th width="10%">身份证背面</th>
-					<th width="5%">是否删除</th>
+					<th width="5%">现住址</th>
+					<th width="3%">联系方式</th>
+					<th width="6%">户口类型</th>
+					<th width="6%">就业状态</th>
+					<th width="12%">照片</th>
+					<th width="12%">身份证</th>
+					<th width="6%">是否删除</th>
 					<th width="5%">创建时间</th>
 					<th width="5%">更新时间</th>
-					<th width="5%">操作</th>
+					<th width="3%">操作</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -71,10 +70,9 @@
 						<img src="{:config('qiniu.qn_domain') . $vo.photo}"  alt="照片" title="个人照片" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="200"> 
 					</td>
 					<td>
-						<img src="{:config('qiniu.qn_domain') . $vo.idCardbefore}"  alt="照片" title="个人证件照正面" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="200"> 
-					</td>
-					<td>
-						<img src="{:config('qiniu.qn_domain') . $vo.idCardback}"  alt="照片" title="个人证件照背面" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="200"> 
+						<img src="{:config('qiniu.qn_domain') . $vo.idCardbefore}"  alt="照片" title="身份证正面" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="100">
+						<br>
+						<img src="{:config('qiniu.qn_domain') . $vo.idCardback}"  alt="照片" title="身份证背面" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="100">
 					</td>
 					<td>{$vo.is_del}</td>
 					<td>{$vo.create_time}</td>

@@ -18,17 +18,14 @@ trait Qiniuyun
             return view();
         }else{
             $file = request()->file('pic');
-            $width = input('width');
-            $height = input('height');
             $path = $file->getRealPath();
             $filename = $file->getInfo('name');
-            $validate = new Validate([
-                'pic'  => 'file|image:'.$width.','.$height,
-            ]);
             $res = ['code'=> 0, 'msg'=>'', 'types'=>input('types')];
-            if (!$validate->check(['pic'=>$file])) {
-                $res['msg'] = '图片尺寸不正确';
-                return json($res);
+            if(property_exists($this, 'upload_vali')){
+                if(!$this->upload_vali){
+                    $res['msg'] = '图片尺寸或者格式不正确';
+                    return json($res);
+                }
             }
             $qn = new Qiniu();
             if($qn->uploadImage($filename, $path)){
