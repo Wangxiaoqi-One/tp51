@@ -19,7 +19,6 @@
 <script src="__STATIC__/jui/js/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="__STATIC__/jui/js/jquery.cookie.js" type="text/javascript"></script>
 <script src="__STATIC__/jui/js/jquery.validate.js" type="text/javascript"></script>
-<script src="__STATIC__/jui/js/jquery.searchableSelect.js" type="text/javascript"></script>
 <!-- <script src="__STATIC__/jui/js/jquery.bgiframe.js" type="text/javascript"></script> -->
 <script src="__STATIC__/jui/js/xheditor/xheditor-1.2.2.min.js" type="text/javascript"></script>
 <script src="__STATIC__/jui/js/xheditor/xheditor_lang/zh-cn.js" type="text/javascript"></script>
@@ -231,3 +230,19 @@ Error loading XML document: dwz.frag.xml
 
 </body>
 </html>
+
+
+<script>
+
+	function imgback(json){
+		if(json.code == 1){
+			let imgUrl = "{:config('qiniu.qn_domain')}" + json.msg;
+			$.pdialog.closeCurrent();
+			$("." + json.types).attr("src", imgUrl);
+			$("." + json.types).val(json.msg);
+		}else if(json.code == 0){
+			alertMsg.info(json.msg);
+		}
+	}
+
+</script>

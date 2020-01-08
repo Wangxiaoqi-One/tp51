@@ -2,9 +2,11 @@
 namespace app\admin\controller;
  
 use app\common\controller\Base;
-
+use app\common\traits\Qiniuyun;
 
 class Users extends Base{
+
+    use Qiniuyun;
 
     protected function _getMap(&$map)
     {
@@ -24,18 +26,5 @@ class Users extends Base{
         } 
     }
 
-    public function upload(){
-        if(request()->isGet()){
-            return view();
-        }else{
-            $file = request()->file('pic');
-            $path = $file->getRealPath();
-            $filename = $file->getInfo('name');
-            if($this->uploadImg($filename, $path)){
-                $this->success('上传图片成功');
-            }else{
-                $this->error('上传失败');
-            }
-        }
-    }
+    
 }

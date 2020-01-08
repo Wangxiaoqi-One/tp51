@@ -6,7 +6,6 @@ use think\Controller;
 class Base extends Controller
 {
 
-    use Qiniuyun;
     protected $obj = '';
 
     protected function initialize()
@@ -49,10 +48,13 @@ class Base extends Controller
         }
         else{
             $data = input('post.');
-            // $vald = validate($this->obj);
-            // if(!$vald->check($data)){
-            //     $this->error($vald->getError());
-            // }
+            if(method_exists($this, '_tigger_edit')){
+                $this->_tigger_edit($data);
+            }
+            $vald = validate($this->obj);
+            if(!$vald->check($data)){
+                $this->error($vald->getError());
+            }
             $model = model($this->obj);
             $model->startTrans();
             $result = $model->allowField(true)->save($data);
@@ -75,13 +77,13 @@ class Base extends Controller
         if(request()->isGet()){
             $id = input('id');
             $data = model($this->obj)->where('id',$id)->find();
-            if(method_exists($this, '_tigger_edit')){
-                $tiggerResult = $this->_tigger_edit($data);
-            }
             $this->assign('data', $data);
             return view();
         }else{
             $data = input('post.');
+            if(method_exists($this, '_tigger_edit')){
+                $this->_tigger_edit($data);
+            }
             $vald = validate($this->obj);
             if(!$vald->check($data)){
                 $this->error($vald->getError());

@@ -1,10 +1,16 @@
 <div class="pageContent">
 	<form method="post" action="{:url($Request.controller . '/upload')}"
-    class="pageForm required-validate" enctype="multipart/form-data" onsubmit="window.opener=null;window.close();" >
+    class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, imgback)" >
 		<div class="pageFormContent" layoutH="56">
 			<dl>
 				<dt>文件：</dt>
-				<dd><input type="file" name="pic" /></dd>
+				<dd>
+					<input type="text" name="types" value="{$types}">
+					<input type="text" name="width" value="{$width}">
+					<input type="text" name="height" value="{$height}">
+					<input type="file" name="pic" /><br>
+					<span class="info">图片尺寸要求：宽{$width}像素，高{$height}像素</span>
+				</dd>
 			</dl>
 		</div>
 		<div class="formBar">

@@ -40,7 +40,6 @@ class Studylesson extends Base{
     }
     protected function _tigger_edit(&$info){
             $info['username'] = userIDtoPhone($info['userID']);
-            $info['studytime'] = majorIdToMajorTime($info['lesson']);
     }
     
 }

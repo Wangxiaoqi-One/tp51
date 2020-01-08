@@ -33,59 +33,68 @@
 			<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 		</ul>
 	</div>
-	<table class="table" width="100%" layoutH="138">
-		<thead>
-			<tr>
-				<th width="80" orderField="id" {eq name="Think.request._order" value="id"} class="{$Think.request._sort}"{/eq}>id</th>
-				<th width="120">用户名</th>
-				<th width="100">性别</th>
-				<th width="150">身份证</th>
-                <th width="80">户籍</th>
-                <th width="80">现住址</th>
-                <th width="100">联系方式</th>
-                <th width="80">户口类型</th>
-                <th width="80">照片</th>
-                <th width="80">就业状态</th>
-                <th width="120">身份证正面</th>
-                <th width="120">身份证背面</th>
-                <th width="80">是否删除</th>
-                <th width="80">创建时间</th>
-                <th width="80">更新时间</th>
-                <th width="80">操作</th>
-			</tr>
-		</thead>
-		<tbody>
-            {volist name="data" id="vo"}
-            <tr target="item_id" rel="{$vo.id}">
-				<td>{$vo.id}</td>
-                <td>{$vo.username}</td>
-                <td>{$vo.sex}</td>
-                <td>{$vo.IDcard}</td>
-                <td>{$vo.addr}</td>
-                <td>{$vo.nowAddr}</td>
-                <td>{$vo.phone}</td>
-                <td>{$vo.housetype}</td>
-                <td>{$vo.photo}</td>
-                <td>{$vo.employstatus}</td>
-                <td>{$vo.idCardbefore}</td>
-                <td>{$vo.idCardback}</td>
-                <td>{$vo.is_del}</td>
-				<td>{$vo.create_time}</td>
-				<td>{$vo.update_time}</td>
-                <td>
-                    <a class="btnEdit" href="{:url($Request.controller . '/edit', 'id=' . $vo.id)}" width="550" height="380"
-                        target="navTab" title="编辑大师">
-                        <span>编辑</span>
-                    </a>
-                    <a class="btnDel" href="{:url($Request.controller . '/deltag', 'id=' . $vo.id)}" width="550" height="380"
-                        target="ajaxTodo" title="确定要删除吗?">
-                        <span>删除</span>
-                    </a>
-                </td>
-			</tr>
-            {/volist}
-		</tbody>
-	</table>
+	<div layouth="91" style="overflow:auto;height:175px">
+		<table class="list" width="100%">
+			<thead>
+				<tr align="center">
+					<th width="5%" orderField="id" {eq name="Think.request._order" value="id"} class="{$Think.request._sort}"{/eq}>id</th>
+					<th width="5%">用户名</th>
+					<th width="5%">性别</th>
+					<th width="5%">身份证</th>
+					<th width="5%">户籍</th>
+					<th width="10%">现住址</th>
+					<th width="5%">联系方式</th>
+					<th width="5%">户口类型</th>
+					<th width="5%">就业状态</th>
+					<th width="10%">照片</th>
+					<th width="10%">身份证正面</th>
+					<th width="10%">身份证背面</th>
+					<th width="5%">是否删除</th>
+					<th width="5%">创建时间</th>
+					<th width="5%">更新时间</th>
+					<th width="5%">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{volist name="data" id="vo"}
+				<tr target="item_id" rel="{$vo.id}" align="center">
+					<td>{$vo.id}</td>
+					<td>{$vo.username}</td>
+					<td>{$vo.sex}</td>
+					<td>{$vo.IDcard}</td>
+					<td>{$vo.addr}</td>
+					<td>{$vo.nowAddr}</td>
+					<td>{$vo.phone}</td>
+					<td>{$vo.housetype}</td>
+					<td>{$vo.employstatus}</td>
+					<td>
+						<img src="{:config('qiniu.qn_domain') . $vo.photo}"  alt="照片" title="个人照片" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="200"> 
+					</td>
+					<td>
+						<img src="{:config('qiniu.qn_domain') . $vo.idCardbefore}"  alt="照片" title="个人证件照正面" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="200"> 
+					</td>
+					<td>
+						<img src="{:config('qiniu.qn_domain') . $vo.idCardback}"  alt="照片" title="个人证件照背面" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="200"> 
+					</td>
+					<td>{$vo.is_del}</td>
+					<td>{$vo.create_time}</td>
+					<td>{$vo.update_time}</td>
+					<td>
+						<a class="btnEdit" href="{:url($Request.controller . '/edit', 'id=' . $vo.id)}" width="550" height="380"
+							target="navTab" title="编辑大师">
+							<span>编辑</span>
+						</a>
+						<a class="btnDel" href="{:url($Request.controller . '/deltag', 'id=' . $vo.id)}" width="550" height="380"
+							target="ajaxTodo" title="确定要删除吗?">
+							<span>删除</span>
+						</a>
+					</td>
+				</tr>
+				{/volist}
+			</tbody>
+		</table>
+	</div>
+	
 	<div class="panelBar">
 		<div class="pages">
 			<span>显示</span>

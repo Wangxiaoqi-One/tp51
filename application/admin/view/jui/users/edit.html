@@ -31,20 +31,40 @@
             <label>户籍类型</label>
             <label><input type="radio" name="housetype" value="0" {eq name="data['housetype']" value="0"}checked{/eq}/>城镇</label>
             <label><input type="radio" name="housetype" value="1" {eq name="data['housetype']" value="1"}checked{/eq}/>农村</label>
-            <dl>
-                <dt>照片</dt>
-                <dd><input name="photo" type=" text" value="{$data['photo']}"/></dd>
-            </dl>
             <label>就业状态</label>
             <label><input type="radio" name="employstatus" value="0" {eq name="data['employstatus']" value="0"}checked{/eq}/>待业</label>
             <label><input type="radio" name="employstatus" value="1" {eq name="data['employstatus']" value="1"}checked{/eq}/>在职</label>
             <dl>
-                <dt>身份证正面</dt>
-                <dd><input name="idCardbefore" type=" text" value="{$data['idCardbefore']}"/></dd>
+                <dt>照片<br>
+                    <span>{:config('setImage.userPhoto')['width']}*{:config('setImage.userPhoto')['height']}</span>
+                </dt>
+                <dd>
+                    <a href="{:url($Request.controller . '/upload', 'types=userphotoAdd&width=' . config('setImage.userPhoto')['width'].'&height=' . config('setImage.userPhoto')['height'])}" class="button" target="dialog">
+                        <span>上传图片</span>
+                    </a><br>
+                    <img src="{:config('qiniu.qn_domain') . $data['photo']}" class="userphotoAdd" alt="照片" title="请上传个人照片" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="200"> 
+                    <input type="hidden" class="userphotoAdd" name="photo" value="">
+                </dd>
             </dl>
             <dl>
-                <dt>身份证背面</dt>
-                <dd><input name="idCardback" type=" text" value="{$data['idCardback']}"/></dd>
+                <dt>身份证正面照</dt>
+                <dd>
+                    <a href="{:url($Request.controller . '/upload', 'types=idCardbefore&width=' . config('setImage.userPhoto')['width'].'&height=' . config('setImage.userPhoto')['height'])}" class="button" target="dialog">
+                        <span>上传图片</span>
+                    </a><br>
+                    <img src="{:config('qiniu.qn_domain') . $data['idCardbefore']}" class="idCardbefore" alt="照片" title="请上传身份证正面照" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="200"> 
+                    <input type="hidden" class="idCardbefore" name="idCardbefore"/>
+                </dd>
+            </dl>
+            <dl>
+                <dt>身份证背面照</dt>
+                <dd>
+                    <a href="{:url($Request.controller . '/upload', 'types=idCardback&width=' . config('setImage.userPhoto')['width'].'&height=' . config('setImage.userPhoto')['height'])}" class="button" target="dialog">
+                        <span>上传图片</span>
+                    </a><br>
+                    <img src="{:config('qiniu.qn_domain') . $data['idCardback']}" class="idCardback" alt="照片" title="请上传身份证背面照" onerror="this.src='__STATIC__/image/pic_error.png'" width="200" height="200"> 
+                    <input type="hidden" class="idCardback" name="idCardback" value=""/>
+                </dd>
             </dl>
         </div>
         <div class="formBar">
