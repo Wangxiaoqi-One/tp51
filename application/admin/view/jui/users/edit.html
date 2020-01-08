@@ -28,12 +28,20 @@
                 <dt>联系方式</dt>
                 <dd><input name="phone" type=" text" value="{$data['phone']}"/></dd>
             </dl>
-            <label>户籍类型</label>
-            <label><input type="radio" name="housetype" value="0" {eq name="data['housetype']" value="0"}checked{/eq}/>城镇</label>
-            <label><input type="radio" name="housetype" value="1" {eq name="data['housetype']" value="1"}checked{/eq}/>农村</label>
-            <label>就业状态</label>
-            <label><input type="radio" name="employstatus" value="0" {eq name="data['employstatus']" value="0"}checked{/eq}/>待业</label>
-            <label><input type="radio" name="employstatus" value="1" {eq name="data['employstatus']" value="1"}checked{/eq}/>在职</label>
+            <dl>
+                <dt>户籍类型</dt>
+                <dd>
+                <label><input type="radio" name="housetype" value="0" {eq name="data['housetype']" value="0"}checked{/eq}/>城镇</label>
+                <label><input type="radio" name="housetype" value="1" {eq name="data['housetype']" value="1"}checked{/eq}/>农村</label>
+                <</dd>    
+            </dl>
+            <dl>
+                <dt>就业状态</dt>
+                <dd>
+                <label><input type="radio" name="employstatus" value="0" {eq name="data['employstatus']" value="0"}checked{/eq}/>待业</label>
+                <label><input type="radio" name="employstatus" value="1" {eq name="data['employstatus']" value="1"}checked{/eq}/>在职</label>
+                </dd>
+            </dl>
             <dl>
                 <dt>照片<br>
                     <span>{:config('setImage.userPhoto')['width']}*{:config('setImage.userPhoto')['height']}</span>

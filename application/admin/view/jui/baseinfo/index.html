@@ -1,0 +1,71 @@
+<div class="pageContent">
+    <form method="post" action="{:url($Request.controller . '/save', 'navTabId=baseinfo&callbackType=closeCurrent')}"
+        class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)">
+
+        <div class="pageFormContent nowrap" layoutH="55">
+            
+            <dl>
+                <dt>网站LOGO宽：px</dt>
+                <dd><input name="logo_imgW" value="{:config('setImage.logo_img')['width']}" type=" text" class="required" /></dd>
+            </dl>
+            <dl>
+                <dt>网站LOGO高：px</dt>
+                <dd><input name="logo_imgH" value="{:config('setImage.logo_img')['height']}" type=" text" class="required"/></dd>
+            </dl>
+            <dl>
+                <dt>用户头像图宽：px</dt>
+                <dd><input name="userPhotoW" value="{:config('setImage.userPhoto')['width']}" type=" text" class="required"/></dd>
+            </dl>
+            <dl>
+                <dt>用户头像图高：px</dt>
+                <dd><input name="userPhotoH" value="{:config('setImage.userPhoto')['height']}" type=" text" class="required"/></dd>
+            </dl>
+            <dl>
+                <dt>身份证正面图宽：px</dt>
+                <dd><input name="idCardbeforeW" value="{:config('setImage.idCardbefore')['width']}" type=" text" class="required"/></dd>
+            </dl>
+            <dl>
+                <dt>身份证正面图高：px</dt>
+                <dd><input name="idCardbeforeH" value="{:config('setImage.idCardbefore')['height']}" type=" text" class="required"/></dd>
+            </dl>
+            <dl>
+                <dt>身份证背面图宽：px</dt>
+                <dd><input name="idCardbackW" value="{:config('setImage.idCardback')['width']}" type=" text" class="required"/></dd>
+            </dl>
+            <dl>
+                <dt>身份证背面图高：px</dt>
+                <dd><input name="idCardbackH" value="{:config('setImage.idCardback')['height']}" type=" text" class="required"/></dd>
+            </dl>
+            <dl>
+                <dt>上传图片的大小：MB</dt>
+                <dd>
+                    <input type=" text" class="required textInput" name="upload_img_size"
+                        value="{:config('setImage.upload_img_size')}" />
+                    <span class="info">整数：单位MB</span>
+                </dd>
+                </dl>
+                <dl>
+                    <dt>上传图片的格式：</dt>
+                    <dd>
+                        <input type=" text" class="required textInput" name="upload_img_type"
+                            value="{:config('setImage.upload_img_type')}" />
+                        <span class="info">格式如：jpg,png 以 , 分隔</span></dd>
+                </dl>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent"><button type="submit">保存</button></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent"><button type="button" class="close">取消</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </form>
+</div>
