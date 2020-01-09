@@ -10,10 +10,8 @@ class Users extends Base{
 
     use Qiniuyun;
 
-    protected $upload_vali = true;
-
     protected $beforeActionList = [
-        'uploadValidate'  =>  ['only'=>'upload'],
+        '_beforeuploadValidate'  =>  ['only'=>'upload'],
     ];
 
     protected function _getMap(&$map)
@@ -34,8 +32,11 @@ class Users extends Base{
         } 
     }
 
-    protected function uploadValidate(){
+    protected function _beforeuploadValidate(){
         if(request()->isPost()){
+            if(empty($_FILES['pic']['tmp_name'])){
+                exit(json_encode(['code'=> 0, 'msg'=>'未选择图片']));
+            }
             $file = request()->file('pic');
             $width = input('width');
             $height = input('height');
@@ -43,7 +44,7 @@ class Users extends Base{
                 'pic'  => 'file|image:'.$width.','.$height . '|fileExt:' . config('setImage.upload_img_type') . '|fileSize:' . config('setImage.upload_img_size'),
             ]);
             if (!$validate->check(['pic'=>$file])) {
-                $this->upload_vali = false;
+                exit(json_encode(['code'=> 0, 'msg'=>'尺寸或格式不正确']));
             }
         }
     }

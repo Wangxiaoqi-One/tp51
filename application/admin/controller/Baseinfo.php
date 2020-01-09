@@ -23,16 +23,12 @@ class Baseinfo extends Controller{
             
         ;
         //缓存 
-        $text = '<?php return ' . var_export($array, true) . ';';
-        if (fopen($setImgPath, 'w+')) {
-            if(file_put_contents($setImgPath, $text) !== false){
-                $this->success('修改配置成功');
-            }else{
-                $this->error('修改失败');
-            }
+        if (setImageConfig($setImgPath, $array)) {
+            $this->success('修改配置成功');
         } else {
-            $this->error('打开文件失败');
+            $this->error('修改失败');
         }
+        
     }
 
 }

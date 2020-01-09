@@ -14,3 +14,8 @@ function majorIdToMajorTime($lesson){
     $majortime = model('Major')->where('id', $lesson)->value('studytime');
     return $majortime ?? '7天';
 }
+
+function setImageConfig($filePath, $config){
+    $text = "<?php\r\nreturn " . var_export($config, true) . ";";  
+    return file_put_contents($filePath, $text);
+}

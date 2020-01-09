@@ -1,4 +1,5 @@
-<?php return array (
+<?php
+return array (
   'logo_img' => 
   array (
     'width' => '75',
@@ -19,6 +20,6 @@
     'width' => '200',
     'height' => '200',
   ),
-  'upload_img_size' => 2097152,
+  'upload_img_size' => 4194304,
   'upload_img_type' => 'jpg,png',
 );

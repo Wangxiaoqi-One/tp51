@@ -21,12 +21,6 @@ trait Qiniuyun
             $path = $file->getRealPath();
             $filename = $file->getInfo('name');
             $res = ['code'=> 0, 'msg'=>'', 'types'=>input('types')];
-            if(property_exists($this, 'upload_vali')){
-                if(!$this->upload_vali){
-                    $res['msg'] = '图片尺寸或者格式不正确';
-                    return json($res);
-                }
-            }
             $qn = new Qiniu();
             if($qn->uploadImage($filename, $path)){
                 $res['code'] = 1;
