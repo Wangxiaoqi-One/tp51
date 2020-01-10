@@ -19,3 +19,27 @@ function setImageConfig($filePath, $config){
     $text = "<?php\r\nreturn " . var_export($config, true) . ";";  
     return file_put_contents($filePath, $text);
 }
+
+function isLogin(){
+    $user = session(config('auth.SESSION_ADMIN_KEY'), '', 'admin');
+        if(empty($user['uid'])){
+            return false;
+        }else{
+            return $user['uid'];
+        }
+}
+
+function isAdministrator(){
+    $uid = isLogin();
+    if($uid){
+        $groupid = model('AuthGroupAccess')->where('uid', $uid)->value('group_id');
+        if($groupid === config("auth.USER_ADMINISTRATOR")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return false;
+
+}
+
