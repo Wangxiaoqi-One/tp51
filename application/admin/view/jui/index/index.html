@@ -122,9 +122,9 @@ $(function(){
 						<ul class="tree treeFolder">
 						
 						
-							<li><a href="" target="navTab" rel="users">管理员</a></li>
-							<li><a href="" target="navTab" rel="major">管理组</a></li>
-							<li><a href="" target="navTab" rel="studylesson">访问规则</a></li>
+							<li><a href="{:url('admin/index')}" target="navTab" rel="admin">管理员</a></li>
+							<li><a href="{:url('authGroup/index')}" target="navTab" rel="authgroup">管理组</a></li>
+							<li><a href="{:url('authRule/index')}" target="navTab" rel="authrule">访问规则</a></li>
 						
 						</ul>
 					</div>	
@@ -250,6 +250,14 @@ Error loading XML document: dwz.frag.xml
 		}else if(json.code == 0){
 			alertMsg.info(json.msg);
 		}
+	}
+
+	function wordsNumber(type, infoType, limit)
+	{
+	 	var str = $("#adminadd").text();
+		 if(str.length > 80){
+			$("#adminadd").attr("disbaled", "true");
+		 }
 	}
 
 </script>

@@ -1,0 +1,79 @@
+<form id="pagerForm" method="post" action="{:url($Request.controller . '/index')}">
+	<input type="hidden" name="_order" value="{$Think.request._order}"/>
+    <input type="hidden" name="_sort" value="{$Think.request._sort}"/>
+    <input type="hidden" name="is_del" value="{$Think.request.is_del}"/>
+	<input type="hidden" name="page" value="{$currentPage|default='1'}" />
+	<input type="hidden" name="numPerPage" value="{$numPerPage}" />
+</form>
+
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					规则名称或规则标识：<input type="text" name="keyword" value="{$Think.request.keyword}"/>
+				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="{:url($Request.controller . '/add')}" target="navTab" rel="addusers"><span>添加</span></a></li>
+			<li><a class="edit" href="{:url($Request.controller . '/edit', 'id='.config('template.tpl_begin') . 'item_id' . config('template.tpl_end'))}" target="navTab" rel="editusers"><span>修改</span></a></li>
+            <li class="line">line</li>
+            <li><a class="icon" href="javascript:navTabPageBreak()"><span>刷新</span></a></li>
+        </ul>
+	</div>
+	<div layouth="91" style="overflow:auto;height:175px">
+		<table class="list" width="100%">
+			<thead>
+				<tr align="center">
+					<th width="10%" orderField="id" {eq name="Think.request._order" value="id"} class="{$Think.request._sort}"{/eq}>id</th>
+					<th width="25%">规则标识</th>
+					<th width="25%">规则名称</th>
+					<th width="20%">状态</th>
+					<th width="20%">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{volist name="data" id="vo"}
+				<tr target="item_id" rel="{$vo.id}" align="center">
+					<td>{$vo.id}</td>
+					<td>{$vo.name}</td>
+					<td>{$vo.title}</td>
+					<td>{$vo.status}</td>
+					<td>
+						<a class="btnEdit" href="{:url($Request.controller . '/edit', 'id=' . $vo.id)}" width="550" height="380"
+							target="navTab" title="编辑">
+                        </a>
+					</td>
+				</tr>
+				{/volist}
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({:config('template.tpl_begin')}numPerPage:this.value{:config('template.tpl_end')})">
+				<option value="10" {eq name="numPerPage" value="10"}selected{/eq}>10</option>
+				<option value="15" {eq name="numPerPage" value="15"}selected{/eq}>15</option>
+				<option value="20" {eq name="numPerPage" value="20"}selected{/eq}>20</option>
+				<option value="30" {eq name="numPerPage" value="30"}selected{/eq}>30</option>
+			</select>
+			<span>条，共{$total}条</span>
+		</div>
+		
+		<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="{$numPerPage}" pageNumShown="5" currentPage="{$currentPage}"></div>
+
+	</div>
+</div>

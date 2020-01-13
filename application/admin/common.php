@@ -104,10 +104,29 @@ if(!function_exists('groupIDtoGroupName'))
      * @param string    $group_id 管理组id
      * @return string
      */
-    function groupIDtoGroupName($group_id){
+    function groupIDtoGroupName($group_id=0){
         $title = model('AuthGroup')->where('id', $group_id)->value('title');
-        return $title ?? '用户组';
+        return $title ?? '未选择用户组';
     }
 
 }
 
+if (!function_exists('getGrouperName')) {
+    /**
+     * 根据管理组id返回管理组成员
+     * @param string    $group_id 管理组id
+     * @return string
+     */
+    function getGrouperName($group_id = 0)
+    {
+        $grouper = "";
+        if ($group_id !== 0) {
+            $admins = model("AuthGroupAccess")->where('group_id', $group_id)->column('uid');
+            foreach ($admins as $uid) {
+                $username = adminIDtoAdminName($uid);
+                $grouper = $grouper . $username . ',';
+            }
+        }
+        return $grouper;
+    }
+}

@@ -1,0 +1,42 @@
+<div class="pageContent">
+    <form method="post" action="{:url($Request.controller . '/add', 'navTabId=authgroup&callbackType=closeCurrent')}"
+        class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)">
+
+        <div class="pageFormContent nowrap" layoutH="55">
+            <dl><h3>用户组信息</h3></dl>
+            <dl>
+                <dt>用户组名</dt>
+                <dd><input name="title" type="text"  class="required"/></dd>
+            </dl>
+            <dl>
+                <dt>描述</dt>
+                <dd><textarea id="adminadd" name="description" cols="30" rows="10" style="resize:none;"
+                        onkeyup="wordsNumber('adminadd', 'adminaddinfo', 80)" onblur="wordsNumber('adminadd', 'adminaddinfo', 80)"
+                        class="textInput"></textarea>
+                    <span id="adminaddinfo" class="info">您还可以输入80个字</span>
+                </dd>
+            </dl>
+            <dl>
+                <label>状态</label>
+                <label><input type="radio" name="status" value="0"/>禁用</label>
+                <label><input type="radio" name="status" value="1"/>正常</label>
+            </dl>
+
+        </div>
+        <div class="formBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent"><button type="submit">保存</button></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent"><button type="button" class="close">取消</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </form>
+</div>
