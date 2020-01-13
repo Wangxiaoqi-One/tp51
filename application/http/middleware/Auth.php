@@ -1,6 +1,7 @@
 <?php
 namespace app\http\middleware;
 
+use think\facade\Log;
 use traits\controller\Jump;
 
 class Auth{
@@ -43,15 +44,15 @@ class Auth{
                     }
                 }
             }
+            $method = request()->method();
+            $param = json_encode(input('param.'), JSON_UNESCAPED_UNICODE);
+            $admin_id = UID;
+            $group_id = model('AuthGroupAccess')->where('uid', $admin_id)->value('group_id') ?: 0;
+            $ip = ip2long(request()->ip());
+            // // 记录日志
+            $this->writeLog($url, $method, $param, $admin_id, $group_id, $ip);
         }
 
-        $method = request()->method();
-        $param = json_encode(input('param.'), JSON_UNESCAPED_UNICODE);
-        $admin_id = UID;
-        $group_id = model('AuthGroupAccess')->where('uid', $admin_id)->value('group_id') ?: 0;
-        $ip = ip2long(request()->ip());
-        // // 记录日志
-        // $this->writeLog($url, $method, $param, $admin_id, $group_id, $ip);
     }
 
 
@@ -95,16 +96,16 @@ class Auth{
      * @param integer $admin_id 管理员id
      * @param integer $group_id 管理组id
      */
-    // final protected function writeLog($url, $method, $param, $admin_id, $group_id, $ip)
-    // {
-    //     Log::write('url:' . $url . '--method:' . $method . '--param:' . $param . '--admin_id:' . $admin_id . '--group_id:' . $group_id . 'ip:' . long2ip($ip) . '--date:' . date('Y-m-d H:i:s', time()), 'adminlog');
-    //     $data['url'] = $url;
-    //     $data['method'] = $method;
-    //     $data['param'] = $param;
-    //     $data['admin_id'] = $admin_id;
-    //     $data['group_id'] = $group_id;
-    //     $data['ip'] = $ip;
-    //     model('AdminLog')->save($data);
-    // }
+    final protected function writeLog($url, $method, $param, $admin_id, $group_id, $ip)
+    {
+        Log::write('url:' . $url . '--method:' . $method . '--param:' . $param . '--admin_id:' . $admin_id . '--group_id:' . $group_id . 'ip:' . long2ip($ip) . '--date:' . date('Y-m-d H:i:s', time()), 'adminlog');
+        $data['url'] = $url;
+        $data['method'] = $method;
+        $data['param'] = $param;
+        $data['admin_id'] = $admin_id;
+        $data['group_id'] = $group_id;
+        $data['ip'] = $ip;
+        model('AdminLog')->save($data);
+    }
 
 }

@@ -32,19 +32,39 @@
             <label><input type="radio" name="housetype" value="0"/>城镇</label>
             <label><input type="radio" name="housetype" value="1"/>农村</label>
             <dl>
-                <dt>照片</dt>
-                <dd><input name="photo" type=" text" /></dd>
+                <dt>照片<br>
+                    <span>{:config('setImage.userPhoto')['width']}*{:config('setImage.userPhoto')['height']}</span>
+                </dt>
+                <dd>
+                    <a href="{:url($Request.controller . '/upload', 'types=userphotoAdd&width=' . config('setImage.userPhoto')['width'].'&height=' . config('setImage.userPhoto')['height'])}" class="button" target="dialog">
+                        <span>上传图片</span>
+                    </a><br><br>
+                    <img src="__STATIC__/image/pic_error.png" class="userphotoAdd" alt="照片" title="请上传个人照片" width="200" height="200"> 
+                    <input type="hidden" class="userphotoAdd" name="photo" value="">
+                </dd>
             </dl>
             <label>就业状态</label>
             <label><input type="radio" name="employstatus" value="0"/>待业</label>
             <label><input type="radio" name="employstatus" value="1"/>在职</label>
             <dl>
-                <dt>身份证正面</dt>
-                <dd><input name="idCardbefore" type=" text" /></dd>
+                <dt>身份证正面照</dt>
+                <dd>
+                    <a href="{:url($Request.controller . '/upload', 'types=idCardbefore&width=' . config('setImage.idCardbefore')['width'].'&height=' . config('setImage.idCardbefore')['height'])}" class="button" target="dialog">
+                        <span>上传图片</span>
+                    </a><br><br>
+                    <img src="__STATIC__/image/pic_error.png" class="idCardbefore" alt="照片" title="请上传身份证正面照" width="200" height="200"> 
+                    <input type="hidden" class="idCardbefore" name="idCardbefore"/>
+                </dd>
             </dl>
             <dl>
-                <dt>身份证背面</dt>
-                <dd><input name="idCardback" type=" text" /></dd>
+                <dt>身份证背面照</dt>
+                <dd>
+                    <a href="{:url($Request.controller . '/upload', 'types=idCardback&width=' . config('setImage.idCardback')['width'].'&height=' . config('setImage.idCardback')['height'])}" class="button" target="dialog">
+                        <span>上传图片</span>
+                    </a><br><br>
+                    <img src="__STATIC__/image/pic_error.png" class="idCardback" alt="照片" title="请上传身份证背面照" width="200" height="200"> 
+                    <input type="hidden" class="idCardback" name="idCardback" value=""/>
+                </dd>
             </dl>
             <dl>
                 <dt>学习课程</dt>

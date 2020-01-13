@@ -28,7 +28,12 @@ class Base extends Controller
         if(method_exists($this, '_getMap')){
             $this->_getMap($map);
         }
-        $data = model($this->obj)->where($map)->order($order.' '.$sort)->paginate($listRows);
+        if(empty($map)){
+            $data = model($this->obj)->order($order.' '.$sort)->paginate($listRows);
+        }else{
+            $data = model($this->obj)->where($map)->order($order.' '.$sort)->paginate($listRows);
+        }
+        
         $page = $data->render();
         $dataArry = $data->toArray();
         if(method_exists($this, '_tigger_list')){

@@ -19,7 +19,8 @@ trait Qiniuyun
         }else{
             $file = request()->file('pic');
             $path = $file->getRealPath();
-            $filename = $file->getInfo('name');
+            $ext = pathinfo($file->getInfo('name'), PATHINFO_EXTENSION);
+            $filename = str_replace('.' . $ext, '', $file->getInfo('name')) . '-' . time() . '.' . $ext;
             $res = ['code'=> 0, 'msg'=>'', 'types'=>input('types')];
             $qn = new Qiniu();
             if($qn->uploadImage($filename, $path)){

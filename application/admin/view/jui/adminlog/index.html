@@ -12,9 +12,23 @@
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
+                <td><span>搜索</span></td>
+                <td><span>管理员</span></td>
 				<td>
-					专业名称：<input type="text" name="keyword" value="{$Think.request.keyword}" />
-				</td>
+                    <select class="combox" name="admin_id">
+                        <option value="">全部</option>
+                        <option value="1">admin</option>
+                        <option value="2">test</option>
+                    </select>
+                </td>
+                <td><span>管理组</span></td>
+                <td>
+                    <select class="combox" name="group_id">
+                        <option value="">全部</option>
+                        <option value="1">超级管理员</option>
+                        <option value="2">普通管理用户</option>
+                    </select>
+                </td>
 				<td>
 					<div class="buttonActive">
 						<div class="buttonContent"><button type="submit">检索</button></div>
@@ -27,41 +41,36 @@
 </div>
 <div class="pageContent">
 	<div class="panelBar">
-		<ul class="toolBar">
-			<li><a class="add" href="{:url($Request.controller . '/add')}" target="navTab" rel="addmajor"><span>添加</span></a></li>
-			<li><a class="delete" href="{:url($Request.controller . '/deltag', 'id='.config('template.tpl_begin') . 'item_id' . config('template.tpl_end'))}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-			<li><a class="edit" href="{:url($Request.controller . '/edit', 'id='.config('template.tpl_begin') . 'item_id' . config('template.tpl_end'))}" target="navTab" rel="editmajor"><span>修改</span></a></li>
-		</ul>
 	</div>
 	<table class="table" width="100%" layoutH="112">
 		<thead>
 			<tr>
-				<th width="80" orderField="id" {eq name="Think.request._order" value="id"} class="{$Think.request._sort}"{/eq}>id</th>
-				<th width="120">专业名称</th>
-				<th width="100">创建时间</th>
-				<th width="100">学习时间</th>
-				<th width="80">更新时间</th>
-				<th width="80">是否删除</th>
-				<th width="80">操作</th>
+				<th width="5%" orderField="id" {eq name="Think.request._order" value="id"} class="{$Think.request._sort}"{/eq}>id</th>
+				<th width="15%">请求url</th>
+				<th width="15%">请求url名称</th>
+				<th width="5%">请求类型</th>
+				<th width="15%">请求参数</th>
+                <th width="5%">管理员</th>
+                <th width="10%">管理组</th>
+				<th width="10%">操作ip</th>
+				<th width="10%">操作时间</th>
+				<th width="10%">操作</th>
 			</tr>
 		</thead>
 		<tbody>
             {volist name="data" id="vo"}
             <tr target="item_id" rel="{$vo.id}">
 				<td>{$vo.id}</td>
-				<td>{$vo.majorname}</td>
-				<td>{$vo.studytime}</td>
-				<td>{$vo.create_time}</td>
+				<td>{$vo.url}</td>
+				<td>{$vo.url}</td>
+				<td>{$vo.method}</td>
+				<td>{$vo.param}</td>
+                <td>{$vo.admin_id}</td>
+                <td>{$vo.group_id}</td>
+				<td>{$vo.ip}</td>
 				<td>{$vo.update_time}</td>
-				<td>{$vo.is_del}</td>
                 <td>
-                    <a class="btnEdit" href="{:url($Request.controller . '/edit', 'id=' . $vo.id)}" width="550" height="380"
-                        target="navTab" title="编辑大师">
-                        <span>编辑</span>
-                    </a>
-                    <a class="btnDel" href="{:url($Request.controller . '/deltag', 'id=' . $vo.id)}" width="550" height="380"
-                        target="ajaxTodo" title="确定要删除吗?">
-                        <span>删除</span>
+                    <a class="btnLook" href="{:url($Request.controller . '/look', 'id=' . $vo.id)}" width="550" height="380" target="navTab" title="查看详细信息">
                     </a>
                 </td>
 			</tr>

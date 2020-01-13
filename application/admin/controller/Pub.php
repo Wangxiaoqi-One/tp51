@@ -43,4 +43,10 @@ class Pub extends Controller{
 
     }
 
+    public function logout(){
+        session(null, 'admin');
+        $this->redirect('admin/pub/index');
+    }
+
+
 }
