@@ -4,7 +4,7 @@ namespace app\admin\controller;
 use think\Validate;
 use app\common\controller\Base;
 use app\common\traits\Qiniuyun;
-
+use Phpexcel\Phpexcel;
 
 class Users extends Base{
 
@@ -54,6 +54,27 @@ class Users extends Base{
             }
             $this->assign('data', $list['items']);
         }
+    }
+
+    public function outXl(){
+
+        if(request()->isGet()){
+            $title = '用户基本信息表';
+            $filed = ['A'=>'用户ID', 'B'=>'用户名', 'C'=>'性别', 'D'=>'身份证', 'E'=>'户籍', 'F'=>'联系方式'];
+            $type = ['id'=>'A', 'username'=>'B', 'sex'=>'C', 'IDcard'=>'D', 'addr'=>'E', 'phone'=>'F'];
+            $data = $this->getUserList();
+            Phpexcel::outExcel($title, $filed, $data, $type);
+
+        }
+    }
+
+    protected function getUserList(){
+        $list = model("Users")->where('is_del', 1)->field('id,username,sex,IDcard,addr,phone')->select();
+        $list = $list->toArray();
+        foreach($list as &$value){
+            $value['sex'] = $value['sex'] ? '男' : '女';
+        }
+        return $list;
     }
     
 }

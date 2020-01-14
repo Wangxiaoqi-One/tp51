@@ -29,6 +29,7 @@
 			<li><a class="add" href="{:url($Request.controller . '/add')}" target="navTab" rel="addusers"><span>添加</span></a></li>
 			<li><a class="delete" href="{:url($Request.controller . '/deltag', 'id='.config('template.tpl_begin') . 'item_id' . config('template.tpl_end'))}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
 			<li><a class="edit" href="{:url($Request.controller . '/edit', 'id='.config('template.tpl_begin') . 'item_id' . config('template.tpl_end'))}" target="navTab" rel="editusers"><span>修改</span></a></li>
+			<li><a class="icon" href="{:url($Request.controller . '/outXl')}" target="Export" targetType="navTab" title="要导出这些记录吗?"><span>导出EXCEL</span></a></li>
 		</ul>
 	</div>
 	<div layouth="91" style="overflow:auto;height:175px">
