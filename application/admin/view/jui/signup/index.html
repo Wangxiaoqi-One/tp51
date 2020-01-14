@@ -36,7 +36,7 @@
                     <span>{:config('setImage.userPhoto')['width']}*{:config('setImage.userPhoto')['height']}</span>
                 </dt>
                 <dd>
-                    <a href="{:url($Request.controller . '/upload', 'types=userphotoAdd&width=' . config('setImage.userPhoto')['width'].'&height=' . config('setImage.userPhoto')['height'])}" class="button" target="dialog">
+                    <a href="{:url($Request.controller . '/upload', 'types=userphotoAdd&width=' . config('setImage.userPhoto')['width'].'&height=' . config('setImage.userPhoto')['height'])}" class="button" target="dialog" width="800" height="480">
                         <span>上传图片</span>
                     </a><br><br>
                     <img src="__STATIC__/image/pic_error.png" class="userphotoAdd" alt="照片" title="请上传个人照片" width="200" height="200"> 
@@ -49,7 +49,7 @@
             <dl>
                 <dt>身份证正面照</dt>
                 <dd>
-                    <a href="{:url($Request.controller . '/upload', 'types=idCardbefore&width=' . config('setImage.idCardbefore')['width'].'&height=' . config('setImage.idCardbefore')['height'])}" class="button" target="dialog">
+                    <a href="{:url($Request.controller . '/upload', 'types=idCardbefore&width=' . config('setImage.idCardbefore')['width'].'&height=' . config('setImage.idCardbefore')['height'])}" class="button" target="dialog" width="800" height="480">
                         <span>上传图片</span>
                     </a><br><br>
                     <img src="__STATIC__/image/pic_error.png" class="idCardbefore" alt="照片" title="请上传身份证正面照" width="200" height="200"> 
@@ -59,7 +59,7 @@
             <dl>
                 <dt>身份证背面照</dt>
                 <dd>
-                    <a href="{:url($Request.controller . '/upload', 'types=idCardback&width=' . config('setImage.idCardback')['width'].'&height=' . config('setImage.idCardback')['height'])}" class="button" target="dialog">
+                    <a href="{:url($Request.controller . '/upload', 'types=idCardback&width=' . config('setImage.idCardback')['width'].'&height=' . config('setImage.idCardback')['height'])}" class="button" target="dialog" width="800" height="480">
                         <span>上传图片</span>
                     </a><br><br>
                     <img src="__STATIC__/image/pic_error.png" class="idCardback" alt="照片" title="请上传身份证背面照" width="200" height="200"> 

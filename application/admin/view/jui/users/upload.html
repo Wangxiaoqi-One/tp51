@@ -1,23 +1,88 @@
-<div class="pageContent">
-	<form method="post" action="{:url($Request.controller . '/upload')}"
-    class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, imgback)" >
-		<div class="pageFormContent" layoutH="58">
-			<dl>
-				<dt>文件：</dt>
-				<dd>
-					<input type="text" name="types" value="{$types}">
-					<input type="text" name="width" value="{$width}">
-					<input type="text" name="height" value="{$height}">
-					<input type="file" name="pic" /><br>
-					<span class="info">图片尺寸要求：宽{$width}像素，高{$height}像素</span>
-				</dd>
-			</dl>
-		</div>
-		<div class="formBar">
+
+<div class="tabs" currentIndex="0" eventType="click" style="width:100%">
+	<div class="tabsHeader">
+		<div class="tabsHeaderContent">
 			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+				<li><a href="javascript:;"><span>本地上传</span></a></li>
+				<li><a href="javascript:;"><span>在线管理</span></a></li>
 			</ul>
 		</div>
-	</form>
+	</div>
+	<div class="tabsContent" style="height:100%;">
+		<form method="post" action="{:url($Request.controller . '/upload')}" class="pageForm required-validate"
+			enctype="multipart/form-data" onsubmit="return iframeCallback(this, imgback)">
+			<div class="pageFormContent" layoutH="85">
+				<dl>
+					<dt>文件：</dt>
+					<dd>
+						<input type="text" name="types" value="{$types}">
+						<input type="text" name="width" value="{$width}">
+						<input type="text" name="height" value="{$height}">
+						<input type="file" name="pic" /><br>
+						<span class="info">图片尺寸要求：宽{$width}像素，高{$height}像素</span>
+					</dd>
+				</dl>
+			</div>
+			<div class="formBar">
+				<ul>
+					<li>
+						<div class="buttonActive">
+							<div class="buttonContent"><button type="submit">保存</button></div>
+						</div>
+					</li>
+					<li>
+						<div class="button">
+							<div class="buttonContent"><button type="button" class="close">取消</button></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</form>
+		<div>
+			<div class="row" layoutH="66" style="padding: 0 10px;">
+				<input type="hidden" name="types" value="{$types}">
+				{volist name="data" id="vo"}
+				<div class="col-md-3 imgsel" style="border: 1px dashed #f00" id="{$vo.key}">
+					<img src="{$vo.img_url}" alt="图片" title="图片" onerror="this.src='__STATIC__/image/pic_error.png'"
+						width="100%" height="200">
+					<p style="margin-top: 6px; text-align: center;">{$vo.key}</p>
+				</div>
+				{/volist}
+			</div>
+			<div class="formBar">
+				<ul>
+					<li>
+						<div class="buttonActive">
+							<div class="buttonContent"><button type="button" onclick="testfun()">选择</button></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
+
+
+<script>
+	function testfun() {
+		var le = $('.row .deltag').length;
+		if (le < 1) {
+			alertMsg.info('请选择要使用的图片!');
+			return false;
+		}
+		var key = $('.row .deltag').attr('id');
+		var tp = $(".row input[name='types']").val();
+		var data = { code: 1, msg: key, types: tp };
+		imgback(data);
+	}
+
+	$(function () {
+
+		$('.imgsel').on('click', function () {
+			$('.imgsel').removeClass('deltag');
+			$(this).toggleClass('deltag');
+		});
+
+
+	});
+</script>

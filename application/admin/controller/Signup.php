@@ -47,6 +47,13 @@ class Signup extends Base{
             if (!$validate->check(['pic'=>$file])) {
                 exit(json_encode(['code'=> 0, 'msg'=>'尺寸或格式不正确']));
             }
+        } else {
+            $listRows = input('numPerPage') ?? '500';
+            $list = $this->getImagelist($listRows);
+            foreach ($list['items'] as &$value) {
+                $value['img_url'] = config('qiniu.qn_domain') . $value['key'];
+            }
+            $this->assign('data', $list['items']);
         }
     }
 }
