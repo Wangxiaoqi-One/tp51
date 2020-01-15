@@ -6,7 +6,7 @@ use think\Validate;
 class Users extends Validate{
 
     protected $rule =   [
-        'username'  => 'require|max:50',  
+        'username'  => 'require|max:50|token',  
         'IDcard'=>'idCard|unique:users',
         'addr'=>'require|max:100',
         'nowAddr'=>'require|max:100',
