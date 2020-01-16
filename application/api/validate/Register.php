@@ -3,7 +3,7 @@ namespace app\api\validate;
 
 use think\Validate;
 
-class Index extends Validate{
+class Register extends Validate{
     protected $rule =   [
         'username'  => 'require|max:50',  
         'IDcard'=>'idCard|unique:users',

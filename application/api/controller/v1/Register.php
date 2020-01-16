@@ -8,7 +8,7 @@ class Register extends Controller{
 
     public function reg(){
         $data = input('post.');
-        $vald = validate('index');
+        $vald = validate('Register');
         $res = ['code'=>0, 'msg'=>'报名失败'];
         if ($vald->check($data)) {
             $user = new Users();
