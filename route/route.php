@@ -9,12 +9,18 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-Route::get('think', function () {
-    return 'hello,ThinkPHP5!';
-});
+// Route::get('think', function () {
+//     return 'hello,ThinkPHP5!';
+// });
 
-Route::get('hello/:name', 'index/hello');
+// Route::get('hello/:name', 'index/hello');
 
-return [
+// return [
 
-];
+// ];
+
+use think\facade\Route;
+
+Route::post('api/register', 'api/v1.register/reg');
+
+Route::get('api/register/:type', 'api/v1.register/getMajor');

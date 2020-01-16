@@ -34,8 +34,23 @@
 
     function registerBack(data){
         if(data.code==0){
-          alertMsg.info(data.msg);
+          $("#sub").after("<b>"+data.msg+"</b>");
         }
     }
+
+      function change(element) {
+        var file = element.files[0];
+        // 确认选择的文件是图片                
+        if (file.type.indexOf("image") == 0) {
+          var reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = function (e) {
+            // 图片base64化
+            var img = new Image(200, 200);
+            img.src = this.result;
+            $("#"+element.id).after(img);
+          };
+        }
+      }
 
 </script>

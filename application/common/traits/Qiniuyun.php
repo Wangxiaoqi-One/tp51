@@ -2,7 +2,6 @@
 namespace app\common\traits;
 
 use Qiniu\Qiniu;
-use think\Validate;
 
 trait Qiniuyun
 {

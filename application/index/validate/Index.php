@@ -1,12 +1,11 @@
 <?php
-namespace app\admin\validate;
+namespace app\index\validate;
 
 use think\Validate;
 
-class Users extends Validate{
-
+class Index extends Validate{
     protected $rule =   [
-        'username'  => 'require|max:50',  
+        'username'  => 'require|max:50|token',  
         'IDcard'=>'idCard|unique:users',
         'addr'=>'require|max:100',
         'nowAddr'=>'require|max:100',
@@ -17,6 +16,8 @@ class Users extends Validate{
         'sex'=>'require',
         'housetype'=>'require',
         'employstatus'=>'require',
+        'lesson'=>'require|max:25',
+        'studystatus'=>'require',
     ];
     
     protected $message  =   [
@@ -35,5 +36,8 @@ class Users extends Validate{
         'sex.require'=>'未选择性别',
         'housetype.require' =>'未选择户籍类型',
         'employstatus.require'=>'未选择就业状态',
+        'lesson.require'     => '专业不能为空',
+        'lesson.max'         => '专业最多不能超过25个字符',
+        'studystatus.require'    => '学习状态不能为空',
     ];
 }

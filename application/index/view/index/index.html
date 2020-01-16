@@ -21,7 +21,7 @@
   <div class="am-g">
     <div class="am-u-lg-4 am-u-md-6 am-u-sm-centered">
 
-      <form method="post" class="am-form" action="{:url($Request.controller . '/register')}" onsubmit="return iframeCallback(this, registerBack)">
+      <form method="post" class="am-form" action="{:url($Request.controller)}" onsubmit="return iframeCallback(this, registerBack)" enctype="multipart/form-data">
         <input type="hidden" name="__token__" value="{$Request.token}" />
         <label for="username">姓名:</label>
         <input type="text" name="username" id="username">
@@ -60,13 +60,13 @@
         <label class="am-radio-inline"><input type="radio" name="employstatus" id="employstatus" value="1">在职</label>
         <br>
         <label for="photo">照片:</label>
-        <input type="file" name="photo" id="photo">
+        <input type="file" name="photo" accept="image/*" id="photo" onchange="change(this)">
         <br>
         <label for="idCardbefore">身份证照片:</label>
-        <input type="file" name="idCardbefore" id="idCardbefore">
+        <input type="file" name="idCardbefore" accept="image/*" id="idCardbefore" onchange="change(this)">
         <br>
-        <label for="idCardback">联系方式:</label>
-        <input type="file" name="idCardback" id="idCardback">
+        <label for="idCardback">身份证照片:</label>
+        <input type="file" name="idCardback" accept="image/*" id="idCardback" onchange="change(this)">
         <br>
         <label>验证码：</label>
         <input id="captcha" type="text" size="5" name="captcha" />
@@ -76,7 +76,7 @@
         </div>
         <br>
         <div class="am-cf">
-          <input type="submit" value="报 名" class="am-btn am-btn-primary am-btn-block">  
+          <input type="submit" value="报 名" id="sub" class="am-btn am-btn-primary am-btn-block">  
         </div>
       </form>
       <br><br>
